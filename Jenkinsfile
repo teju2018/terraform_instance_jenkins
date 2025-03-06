@@ -12,9 +12,8 @@ pipeline {
     stages {
         stage('Setup GCP Credentials') {
             steps {
-                withCredentials([file(credentialsId: 'GCP_JSON_KEY', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
-                    sh 'gcloud config set project $PROJECT_ID'
+                withCredentials([file(credentialsId: 'GCP_JSON_KEY', variable: 'GCP_KEY_FILE')]) {
+                    sh 'cp $GCP_KEY_FILE terraform-key.json'
                 }
             }
         }
