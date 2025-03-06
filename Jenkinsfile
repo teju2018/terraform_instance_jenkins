@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     parameters {
-  string defaultValue: 'Apply', name: 'ACTION'
-}
+        string(defaultValue: 'Apply', name: 'ACTION')
+    }
 
     environment {
         PROJECT_ID = "paul2018"
@@ -33,10 +33,13 @@ pipeline {
         stage('Terraform Apply or Destroy') {
             steps {
                 script {
-                    if (params.ACTION == 'apply') {
+                    echo "Selected ACTION: ${params.ACTION}"
+                    if (params.ACTION == 'Apply') {  
                         sh 'terraform apply -auto-approve'
-                    } else if (params.ACTION == 'destroy') {
+                    } else if (params.ACTION == 'Destroy') {  
                         sh 'terraform destroy -auto-approve'
+                    } else {
+                        error "Invalid ACTION parameter value: ${params.ACTION}"
                     }
                 }
             }
