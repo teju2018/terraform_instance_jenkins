@@ -9,7 +9,7 @@ provider "google" {
 resource "google_compute_instance" "my_instance" {
     name = "paul-vm1"
     machine_type = "e2-micro"
-    zone = "us-central1-a"
+    zone = "us-central1-b"
     boot_disk {
       initialize_params {
         image = "centos-stream-9"
