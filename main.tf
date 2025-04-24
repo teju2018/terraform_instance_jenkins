@@ -1,6 +1,7 @@
 provider "google" {
    // credentials = file(var.gcp_credentials)
-    project = "paul2018"
+   // project = "paul2018"
+    project = "my-project-123-453312"
     region = "us-central1"
     zone = "us-central1-a"
 
